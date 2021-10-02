@@ -25,7 +25,7 @@ Implementation issues
 
 #. DALI states, "Parameter names are not case sensitive; a DAL service must treat upper-, lower-, and mixed-case parameter names as equal."
    This is a bizarre provision for a web service that makes implementing IVOA standards with comon web application frameworks unnecessarily difficult.
-   For example, FastAPI's normal query and form parameter parsing with its associated automated generation of OpenAPI schemas cannot be used as normal because they (like every other Python web framework I've used) treat parameter names as case-sensitive.
+   For example, FastAPI's normal query and form parameter parsing with its associated automated generation of OpenAPI schemas cannot be used because they (like every other Python web framework I've used) treat parameter names as case-sensitive.
    This means that FastAPI cannot automatically impose restrictions on allowable values for parameters and automatically generate error messages.
    Parameters have to be recovered from a case-canonicalized copy of the query parameters and all the normally-automatic verification of required parameters, valid parameter names, and valid parameter values has to be tediously reimplemented manually, solely because of this requirement.
 
