@@ -46,6 +46,11 @@ Implementation issues
    None of this seems correct.
    An implementation should be able to fail the job with an error if the given parameters are inconsistent.
 
+#. There is no specification in SODA or UWS for error replies from the async API other than job errors.
+   (For example, posting an invalid time to the destruction endpoint or an invalid phase to the phase endpoint, or requesting a job that doesn't exist.)
+   The HTTP status code is specified in some cases, but not the contents of the message or a clear statement that the contents don't matter.
+   Should this return ``text/plain`` errors as specified for the sync API, either ``text/plain`` or VOTable per DALI, the implementor's choice as long as the HTTP status code is correct, or something else?
+
 Standard inconsistencies
 ========================
 
@@ -56,6 +61,10 @@ Standard inconsistencies
 #. DALI says that errors may be either VOTables or plain text.
    SODA requires that errors from the sync API be plain text and doesn't allow for VOTables, but claims that it's following DALI.
 
+#. SODA section 5.2 says, "Error codes are specified in DALI," but DALI does not specify any error codes that I could see, only a VOTable representation of errors.
+   (Perhaps this refers to the brief discussion of HTTP error codes?
+   If so, this is far from a full specification of possible error codes.)
+
 Clarity issues
 ==============
 
@@ -65,6 +74,10 @@ Clarity issues
 #. The ``isPost`` attribute of ``<uws:parameter>`` in the UWS standard is never mentioned in the text and has no ``<xs:documentation>`` element in the schema, leaving its purpose to the imagination of the reader.
 
 #. There is no full example of a VOTable error reply in DALI.
+
+#. SODA refers to the parameters controlling the shape of a cutout as "filtering parameters" and, in some cases, as a "filter."
+   Filter is an overloaded term in astronomy so this terminology could create some confusion with, for example, optical filters.
+   We used the word "stencils" instead for our implementation.
 
 Formatting issues
 =================
