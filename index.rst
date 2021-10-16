@@ -31,14 +31,15 @@ Implementation issues
 
 #. XML is used for all responses.
    Modern web architectures have largely abandoned XML in favor of JSON or (for high performance APIs) Protobufs.
-   Generating XML is tedious and lacks first-class support in web frameworks.
+   Generating XML is tedious and lacks first-class support in web frameworks, which significantly increases implementation costs because of the need to add an XML templating or generation layer.
+   JSON generation and parsing is built-in and transparent in modern web frameworks and is generally the default, so returning XML also requires overriding all of the defaults.
    Parsing XML is similarly tedious and prone to a large number of `security issues <https://docs.python.org/3/library/xml.html#xml-vulnerabilities>`__.
 
 #. VOTable error messages as specified in DALI do not separate the required error code from the additional details in the required ``<INFO>`` tag contents.
    Since it is using XML, this seems like a missed opportunity.
    It also doesn't provide a mechanism for separating a short error message from extended error details (such as a backtrace), even though UWS indicates this is desirable and provides its own mechanism to lift an error summary into the job list.
 
-#. SODA requires each cutout parameter produce a separate result file, which forbids returning a single FITS file with all cutouts included (which seems like a better data model for services that can handle it).
+#. SODA requires each cutout filter parameter produce a separate result file, which forbids returning a single FITS file with all cutouts included (which seems like a better data model for services that can handle it).
 
 #. SODA requires accepting invalid filter parameters for a given data ID and indicating that they are invalid solely by having the corresponding result be a ``text/plain`` document starting with an error code.
    This seems needlessly opaque and requires the client intuit that some of their requests fail by noticing the MIME type of some of the responses.
@@ -50,6 +51,10 @@ Implementation issues
    (For example, posting an invalid time to the destruction endpoint or an invalid phase to the phase endpoint, or requesting a job that doesn't exist.)
    The HTTP status code is specified in some cases, but not the contents of the message or a clear statement that the contents don't matter.
    Should this return ``text/plain`` errors as specified for the sync API, either ``text/plain`` or VOTable per DALI, the implementor's choice as long as the HTTP status code is correct, or something else?
+
+#. The ``/{jobs}/{job-id}/destruction`` and ``/{jobs}/{job-id}/quote`` UWS routes are specified as returning an empty string if the job has no destruction time or quote, respectively.
+   This is a poor choice of special value, since an empty body can occur by accident or error for many other reasons, such as misconfigured intermediate web servers.
+   Since all valid values will be ISO 8601 dates, another, less error-prone special value should be used, such as ``none``.
 
 Standard inconsistencies
 ========================
