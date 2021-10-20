@@ -114,6 +114,7 @@ UWS async API errors
 There is no specification in SODA or UWS for error replies from the async API other than job errors.
 (For example, posting an invalid time to the destruction endpoint or an invalid phase to the phase endpoint, or requesting a job that doesn't exist.)
 The HTTP status code is specified in some cases, but not the contents of the message or a clear statement that the contents don't matter.
+
 Should this return ``text/plain`` errors as specified for the sync API, either ``text/plain`` or VOTable per DALI, the implementor's choice as long as the HTTP status code is correct, or something else?
 
 Use of empty replies
@@ -121,6 +122,7 @@ Use of empty replies
 
 The ``/{jobs}/{job-id}/destruction`` and ``/{jobs}/{job-id}/quote`` UWS routes are specified as returning an empty string if the job has no destruction time or quote, respectively.
 This is a poor choice of special value, since an empty body can occur by accident or error for many other reasons, such as misconfigured intermediate web servers.
+
 Since all valid values will be ISO 8601 dates, another, less error-prone special value should be used, such as ``none``.
 
 Standard inconsistencies
