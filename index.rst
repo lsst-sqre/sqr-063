@@ -73,8 +73,8 @@ For example, FastAPI's normal query and form parameter parsing with its associat
 This means that FastAPI cannot automatically impose restrictions on allowable values for parameters and automatically generate error messages.
 Parameters have to be recovered from a case-canonicalized copy of the query parameters and all the normally-automatic verification of required parameters, valid parameter names, and valid parameter values has to be tediously reimplemented manually, solely because of this requirement.
 
-Implementing and testing this case-insensitivity added around 10% to the cost to the implementation.
-Worse, it resulted in code that was harder to understand, debug, and maintain, and made the generated OpenAPI documentation less accurate and useful.
+Implementing and testing this case-insensitivity added noticeably to the cost to the implementation.
+Worse, it resulted in code that was harder to understand, debug, and maintain; made the implementation work more tedious and irritating; and made the generated OpenAPI documentation less accurate and useful.
 
 XML
 ---
