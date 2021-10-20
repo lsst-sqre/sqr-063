@@ -124,5 +124,3 @@ Formatting issues
 
 #. References to other IVOA standards documents are not hyperlinks, but instead are textual academic citations whose associated URLs are only listed in the References section.
    This makes it tedious to jump back and forth between related documents and find the relevant section being cited in a different document, something that's unfortunately very frequently needed to understand IVOA standards.
-
-#. IVOA SSOAuth is not available in HTML format.
