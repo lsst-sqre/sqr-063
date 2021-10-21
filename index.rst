@@ -37,7 +37,7 @@ UWS makes extensive use of ``POST`` with the default ``application/x-www-form-ur
 This makes UWS inherently vulnerable to CSRF attacks, since cross-site ``POST`` with a content-type of ``application/x-www-form-urlencoded`` is allowed without pre-flight checks.
 See `the rules for simple requests <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests>`__.
 
-In this context, a simple request is bad; you want state-changing requests to not be simple requests so that CORS preflight checks are forced.
+In this context, a simple request is bad; you want state-changing requests to not be simple requests so that CORS pre-flight checks are forced.
 If simple requests cannot be avoided (if, for example, the page must be usable as the target of a form submission), there should be a mechanism to require form tokens, or some other defense against forged cross-site requests.
 
 If client input must be in JSON or XML with an appropriate ``Content-Type`` header, it would no longer qualify as a simple request and thus force a pre-flight check.
@@ -58,7 +58,7 @@ Not all sync requests will be state-changing, depending on the nature of the ser
 -----------------------------
 
 XML schema references in standards examples use ``http`` instead of ``https``.
-Depending on the nature of the XML processing library, this can create security vulnerabilities by allowing an active in-path attacker to replace the remote schema document with one that may trigger XML processor vulnerabilities.
+Depending on the nature of the XML processing library, this can exacerbate security vulnerabilities by allowing an active in-path attacker to replace the remote schema document with one that may trigger XML processor vulnerabilities.
 
 Implementation issues
 =====================
@@ -67,7 +67,7 @@ Case-insensitive parameters
 ---------------------------
 
 DALI states, "Parameter names are not case sensitive; a DAL service must treat upper-, lower-, and mixed-case parameter names as equal."
-This is a highly unusual provision for a web service and makes implementing IVOA standards with comon web application frameworks unnecessarily difficult.
+This is a highly unusual provision for a web service and makes implementing IVOA standards with common web application frameworks unnecessarily difficult.
 
 For example, FastAPI's normal query and form parameter parsing with its associated automated generation of OpenAPI schemas cannot be used because they (like every other Python web framework I've used) treat parameter names as case-sensitive.
 This means that FastAPI cannot automatically impose restrictions on allowable values for parameters and automatically generate error messages.
@@ -115,7 +115,7 @@ There is no specification in SODA or UWS for error replies from the async API ot
 (For example, posting an invalid time to the destruction endpoint or an invalid phase to the phase endpoint, or requesting a job that doesn't exist.)
 The HTTP status code is specified in some cases, but not the contents of the message or a clear statement that the contents don't matter.
 
-Should this return ``text/plain`` errors as specified for the sync API, either ``text/plain`` or VOTable per DALI, the implementor's choice as long as the HTTP status code is correct, or something else?
+Should this return ``text/plain`` errors as specified for the sync API, either ``text/plain`` or VOTable per DALI, the implementer's choice as long as the HTTP status code is correct, or something else?
 
 Use of empty replies
 --------------------
