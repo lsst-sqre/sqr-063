@@ -125,6 +125,13 @@ This is a poor choice of special value, since an empty body can occur by acciden
 
 Since all valid values will be ISO 8601 dates, another, less error-prone special value should be used, such as ``none``.
 
+Mixing query and ``POST`` parameters
+------------------------------------
+
+UWS says that ``PHASE=RUN`` can be added to the query portion of the URL when creating a new job, indicating that the job should automatically be started.
+This mixes query parameters with a ``POST`` body, which is unusual and generally discouraged.
+Any parameters provided to a ``POST`` should be sent in the body of hte ``POST`` (and ``PHASE`` should then be reserved so that it's not used as a job parameter).
+
 Standard inconsistencies
 ========================
 
