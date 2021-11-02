@@ -12,6 +12,10 @@ It documents hurdles and roadblocks ranging from minor clarity issues to signifi
 
 .. _FastAPI: https://fastapi.tiangolo.com/
 
+See `DMTN-208`_ for the technical architecture of our image cutout service.
+
+.. _DMTN-208: https://dmtn-208.lsst.io/
+
 Standards used
 ==============
 
