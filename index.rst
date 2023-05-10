@@ -200,3 +200,18 @@ IVOA standard cross-references
 
 References to other IVOA standards documents are not hyperlinks, but instead are textual academic citations whose associated URLs are only listed in the References section.
 This makes it tedious to jump back and forth between related documents and find the relevant section being cited in a different document, something that's unfortunately very frequently needed to understand IVOA standards.
+
+Appendix: Implementations
+=========================
+
+The (hopefully) IVOA-standard-compliant implementation of the SODA image cutout service currently in use is `vo-cutouts <https://github.com/lsst-sqre/vo-cutouts>`__.
+This repository provides the service envelope and job dispatch infrastructure.
+The code that generates the cutout itself is maintained separately in `image_cutout_backend <https://github.com/lsst-dm/image_cutout_backend>`__.
+
+As an experiment to see what difference it would make to the implementation to use a protocol that is more native to FastAPI, I implemented a prototype for a modified, JSON-based protocol.
+This version of the cutout service is not fully tested and is not intended to be deployed; it was written purely to test and illustrate the protocol effect on the code architecture.
+That prototype can be seen at `ivoa-cutout-poc <https://github.com/lsst-sqre/ivoa-cutout-poc>`__.
+
+David A. Wheeler's SLOCCount_ says the IVOA-standard implementation has 2,255 lines of code (not including tests), and the proof-of-concept version with a modified protocol has 1,738 lines of code (also not including tests), for a savings of a bit over 20%.
+
+.. _SLOCCount: https://dwheeler.com/sloccount/
