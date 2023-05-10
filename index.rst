@@ -84,10 +84,16 @@ XML
 ---
 
 XML is used for all responses.
-Modern web architectures have largely abandoned XML in favor of JSON or (for high performance APIs) Protobufs.
-Generating XML is tedious and lacks first-class support in web frameworks, which significantly increases implementation costs because of the need to add an XML templating or generation layer.
-JSON generation and parsing is built-in and transparent in modern web frameworks and is generally the default, so returning XML also requires overriding all of the defaults.
-Parsing XML is similarly tedious and prone to a large number of `security issues <https://docs.python.org/3/library/xml.html#xml-vulnerabilities>`__.
+This is an older choice that was common at the time the IVOA standards were originally developed, but which has received less attention and support of late.
+Newer web frameworks on both the server and client side almost always support JSON (or newer encodings such as Protobufs), but support for XML is spotty in a lot of languages and frameworks.
+(Java is a notable exception.)
+
+Similarly, new programming languages such as Go, Rust, or Julia tend to focus on good JSON support first, and while XML support may be available, it usually isn't as well-integrated into the ecosystem.
+This in turn makes generating and parsing it more tedious and complex, which in turn significantly increases implementation costs.
+
+JSON generation and parsing is normally the default, so returning XML may also require overriding defaults and manually configuring inputs and outputs to web route handlers, rather than being able to rely on the optimized default path.
+
+XML parsing is also complex and prone to a large number of `security issues <https://docs.python.org/3/library/xml.html#xml-vulnerabilities>`__.
 
 VOTable error structure
 -----------------------
