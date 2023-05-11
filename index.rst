@@ -95,6 +95,11 @@ JSON generation and parsing is normally the default, so returning XML may also r
 
 XML parsing is also complex and prone to a large number of `security issues <https://docs.python.org/3/library/xml.html#xml-vulnerabilities>`__.
 
+It is important here to distinguish between transfer formats for data and serialization formats for the web protocol.
+Use of a serialization format other than XML for protocol elements doesn't necessarily imply that XML-based encodings (such as VOTable) could not be used for astronomical data, any more than use of JSON for the web protocol would imply that FITS files must be converted to JSON.
+The protocol elements could use JSON or some other serialization format while still returning data streams in XML.
+Choosing the best serialization format for the data itself is a beyond the scope of this tech note.
+
 VOTable error structure
 -----------------------
 
