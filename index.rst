@@ -213,7 +213,9 @@ The code that generates the cutout itself is maintained separately in `image_cut
 
 As an experiment to see what difference it would make to the implementation to use a protocol that is more native to FastAPI, I implemented a prototype for a modified, JSON-based protocol.
 This version of the cutout service is not fully tested and is not intended to be deployed; it was written purely to test and illustrate the protocol effect on the code architecture.
-That prototype can be seen at `ivoa-cutout-poc <https://github.com/lsst-sqre/ivoa-cutout-poc>`__.
+
+The proof-of-concept protocol is documented by its `OpenAPI schema <poc-schema.html>`__.
+The code of the prototype can be seen at `lsst-sqre/ivoa-cutout-poc <https://github.com/lsst-sqre/ivoa-cutout-poc>`__.
 
 David A. Wheeler's SLOCCount_ says the IVOA-standard implementation has 2,255 lines of code (not including tests), and the proof-of-concept version with a modified protocol has 1,738 lines of code (also not including tests), for a savings of a bit over 20%.
 
