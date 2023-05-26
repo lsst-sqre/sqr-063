@@ -12,9 +12,7 @@ It documents hurdles and roadblocks ranging from minor clarity issues to signifi
 
 .. _FastAPI: https://fastapi.tiangolo.com/
 
-See `DMTN-208`_ for the technical architecture of our image cutout service.
-
-.. _DMTN-208: https://dmtn-208.lsst.io/
+See :dmtn:`208` for the technical architecture of our image cutout service.
 
 Standards used
 ==============
@@ -57,12 +55,6 @@ Implementing any resource that creates state changes in the server (such as crea
 See, for example, the `OWASP CSRF Prevention Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html>`__: "Do not use GET requests for state changing operations."
 
 Not all sync requests will be state-changing, depending on the nature of the service, so it's reasonable to allow ``GET`` requests as an option, but requiring ``GET`` be supported means the only options for an implementation concerned about this risk is to not support sync requests or not follow the standard.
-
-``http`` in schema references
------------------------------
-
-XML schema references in standards examples use ``http`` instead of ``https``.
-Depending on the nature of the XML processing library, this can exacerbate security vulnerabilities by allowing an active in-path attacker to replace the remote schema document with one that may trigger XML processor vulnerabilities.
 
 Implementation issues
 =====================
